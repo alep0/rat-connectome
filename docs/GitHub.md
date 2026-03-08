@@ -6,14 +6,16 @@
 
 ```bash
 git init
+git branch -M main
 git remote add origin https://github.com/alep0/rat-connectome.git
 git add .
+#git reset
 git status
 git remote -v
 git commit -m "feat: initial project structure and refactored pipeline"
+git remote set-url origin git@github.com:alep0/rat-connectome.git
 git push -u origin main
 
-git remote set-url origin git@github.com:alep0/rat-connectome.git
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
 git clone git@github.com:alep0/rat-connectome.git
