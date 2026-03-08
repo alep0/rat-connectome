@@ -1,0 +1,41 @@
+# .dockerignore — Rat Structural Connectome Pipeline
+# Exclude large data files, results, and dev artefacts from Docker build context
+
+# Raw MRI data (large; mounted as volumes instead)
+data/raw/**/*.nii
+data/raw/**/*.nii.gz
+data/raw/**/*.dat
+data/processed/
+
+# Pipeline results
+results/
+
+# Log files
+logs/
+
+# Python cache
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Conda / venv
+.venv/
+*.egg-info/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore

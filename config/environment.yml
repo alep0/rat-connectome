@@ -1,0 +1,28 @@
+name: rat-conn_env
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  # Python interpreter
+  - python=3.10
+
+  # Core scientific stack
+  - numpy>=1.24
+  - scipy>=1.10
+  - matplotlib>=3.7
+  - seaborn>=0.12
+
+  # Neuroimaging / tractography
+  - dipy>=1.7
+  - nibabel>=5.0
+  - fury>=0.9         # optional — 3-D visualisation; comment out if not needed
+
+  # Machine learning (Gaussian fitting)
+  - scikit-learn>=1.2
+
+  # Utilities
+  - pip
+
+  - pip:
+  #  - patch2self       # included in recent dipy; listed here for explicitness

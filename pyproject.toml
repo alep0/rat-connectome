@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=67", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "rat-connectome"
+version = "1.0.0"
+description = "Rat structural connectome pipeline: tractography, connectivity matrices, and group statistics."
+authors = [
+    { name = "Alejandro Aguado", email = "aaaguado@ifisc.uib-csic.es" }
+]
+requires-python = ">=3.9"
+license = { text = "MIT" }
+readme = "docs/README.md"
+
+dependencies = [
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "matplotlib>=3.7",
+    "seaborn>=0.12",
+    "dipy>=1.7",
+    "nibabel>=5.0",
+    "scikit-learn>=1.2",
+]
+
+[project.optional-dependencies]
+viz = ["fury>=0.9"]
+dev = ["pytest>=7", "pytest-cov"]
+
+[project.scripts]
+connectome-matrices   = "connectome_matrix_pipeline:main"
+connectome-tau        = "gaussian_tau_pipeline:main"
+connectome-statistics = "structural_connectivity_analysis:main"
+
+[tool.setuptools.packages.find]
+where = ["source"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts   = "-v --tb=short"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"

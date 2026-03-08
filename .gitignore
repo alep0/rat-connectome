@@ -1,0 +1,63 @@
+# .gitignore — Rat Structural Connectome Pipeline
+
+# ----- Large data files (use DVC or store separately) -----
+#data/raw/**/*.nii
+#data/raw/**/*.nii.gz
+#data/raw/**/*.dat
+#data/raw/**/*.txt
+data/raw/
+data/processed/
+
+# ----- Pipeline outputs -----
+results/
+
+# ----- Log files -----
+logs/
+
+# ----- Python -----
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+*.so
+*.dylib
+
+# ----- Testing -----
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ----- Virtual environments -----
+.venv/
+venv/
+env/
+
+# ----- Conda -----
+.conda/
+
+# ----- IDEs -----
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# ----- OS -----
+.DS_Store
+Thumbs.db
+desktop.ini
+*~
+
+# ----- Jupyter -----
+.ipynb_checkpoints/
+*.ipynb
+
+# ----- Temporary -----
+*.tmp
+*.bak
+*.orig

@@ -1,0 +1,28 @@
+{
+  "_schema_version": "1.0",
+  "_description": "Subject (rat) registry for the structural connectome pipeline.",
+
+  "groups": {
+    "t1": {
+      "label": "Naïve controls",
+      "map_prefix": "1",
+      "subjects": [
+        "R01", "R02", "R03", "R04", "R05", "R06", "R07", "R08", "R09",
+        "R10", "R12", "R13", "R14", "R15", "R16", "R17", "R18", "R19"
+      ]
+    },
+    "t2": {
+      "label": "Alcohol-exposed",
+      "map_prefix": "2",
+      "subjects": [
+        "R01", "R02", "R03", "R04", "R05", "R06", "R07", "R08", "R09",
+        "R10", "R12", "R13", "R14", "R15", "R16", "R17", "R18", "R19"
+      ]
+    }
+  },
+
+  "notes": {
+    "missing": ["R11"],
+    "reason":  "R11 excluded — acquisition artefact."
+  }
+}

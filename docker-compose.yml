@@ -1,0 +1,68 @@
+version: "3.9"
+
+# =============================================================================
+# docker-compose.yml — Rat Structural Connectome Pipeline
+# =============================================================================
+
+services:
+  connectome:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: rat-connectome:latest
+    container_name: rat-connectome
+
+    # -------------------------------------------------------------------------
+    # Volume mounts — host ↔ container data exchange
+    # -------------------------------------------------------------------------
+    volumes:
+      - ./data:/workspace/connectome/data          # Input NIfTI / atlas files
+      - ./results:/workspace/connectome/results    # Pipeline outputs
+      - ./logs:/workspace/connectome/logs          # Log files
+      - ./config:/workspace/connectome/config      # Configuration (live reload)
+
+    # -------------------------------------------------------------------------
+    # Environment variables
+    # -------------------------------------------------------------------------
+    environment:
+      - CONNECTOME_ROOT=/workspace/connectome
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - PYTHONPATH=/workspace/connectome/source
+
+    # -------------------------------------------------------------------------
+    # Resource limits (adjust for your hardware)
+    # -------------------------------------------------------------------------
+    deploy:
+      resources:
+        limits:
+          memory: 16g
+
+    # -------------------------------------------------------------------------
+    # Default command
+    # -------------------------------------------------------------------------
+    command: >
+      bash -c "
+        source activate rat-conn_env &&
+        python3 validations/validate_environment.py --root /workspace/connectome
+      "
+
+  # ---------------------------------------------------------------------------
+  # Test runner service
+  # ---------------------------------------------------------------------------
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: rat-connectome:latest
+    container_name: rat-connectome-tests
+    volumes:
+      - ./source:/workspace/connectome/source   # live mount for TDD
+      - ./tests:/workspace/connectome/tests
+      - ./logs:/workspace/connectome/logs
+    environment:
+      - PYTHONPATH=/workspace/connectome/source
+    command: >
+      bash -c "
+        source activate conn_env &&
+        python3 -m pytest tests/ -v --tb=short
+      "
