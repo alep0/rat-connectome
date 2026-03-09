@@ -82,7 +82,7 @@ class TestMatrixToVector(unittest.TestCase):
         # Import with stubs in place
         sca = MagicMock()
         sys.modules["structural_connectivity_analysis"] = sca
-        #from statistics_utils import analyze_and_plot  # noqa: ensure no crash
+        #from statistics_utils import analyze_and_plot  # noqa
 
         mat = np.zeros((4, 4))
         mat[0, 1] = 5.0

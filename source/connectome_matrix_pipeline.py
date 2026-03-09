@@ -353,8 +353,10 @@ def run_pipeline(
     # Save FA tracking mask figure
     sli = FA_vol.shape[2] // 2
     fig, (ax1, ax2) = plt.subplots(1, 2)
-    ax1.axis("off"); ax1.imshow(FA_vol[:, :, sli].T, cmap="gray", origin="lower")
-    ax2.axis("off"); ax2.imshow((FA_vol[:, :, sli] > 0.15).T, cmap="gray", origin="lower")
+    ax1.axis("off")
+    ax1.imshow(FA_vol[:, :, sli].T, cmap="gray", origin="lower")
+    ax2.axis("off")
+    ax2.imshow((FA_vol[:, :, sli] > 0.15).T, cmap="gray", origin="lower")
     fig.savefig(str(out_path / f"FA_tracking_mask_{rat}.png"))
     plt.close(fig)
 
