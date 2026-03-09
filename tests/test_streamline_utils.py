@@ -8,7 +8,7 @@ These tests use synthetic data so they run without any MRI files.
 import sys
 import unittest
 from pathlib import Path
-from unittest.mock import MagicMock, patch
+from unittest.mock import MagicMock
 
 import numpy as np
 
@@ -76,11 +76,11 @@ class TestMatrixToVector(unittest.TestCase):
 
     def test_upper_triangle_extraction(self):
         """Only upper-triangle values above threshold are extracted."""
-        import importlib
+        #import importlib
         # Import with stubs in place
         sca = MagicMock()
         sys.modules["structural_connectivity_analysis"] = sca
-        from statistics_utils import analyze_and_plot  # noqa: ensure no crash
+        #from statistics_utils import analyze_and_plot  # noqa: ensure no crash
 
         mat = np.zeros((4, 4))
         mat[0, 1] = 5.0

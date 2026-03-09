@@ -8,9 +8,9 @@ Refactored from: statistics_structural_connectivity_engine_v4.py
 """
 
 import logging
-import sys
+#import sys
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -337,7 +337,7 @@ def run_group_analysis(
 
     logger.info("Computing group masks …")
     mask_1 = compute_group_mask(rats, _data_path(group_name_1, model_name_1), 50, 18)
-    mask_2 = compute_group_mask(rats, _data_path(group_name_2, model_name_2), 50, 18)
+    #mask_2 = compute_group_mask(rats, _data_path(group_name_2, model_name_2), 50, 18)
     logger.info("Group masks computed.")
 
     ensemble_1: List[float] = []

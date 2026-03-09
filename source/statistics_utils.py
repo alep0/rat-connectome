@@ -9,7 +9,7 @@ Refactored from: statistics_v2.py
 
 import logging
 from pathlib import Path
-from typing import List, Optional, Sequence
+from typing import Sequence
 
 import matplotlib.pyplot as plt
 import numpy as np

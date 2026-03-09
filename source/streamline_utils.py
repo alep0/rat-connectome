@@ -9,8 +9,8 @@ Refactored from: Streamlines_functions_v1.py
 
 import logging
 import pickle
-from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+#from pathlib import Path
+from typing import Dict, List, Tuple
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -164,7 +164,7 @@ def get_roi_streamlines(
     def _build_roi_mask(index: int):
         labels_list: List[int] = []
         if index < n_nodes:
-            roi_labels = atlas[index]
+            #roi_labels = atlas[index]
             roi_mask = labels == atlas[index][0]
             for p in atlas[index]:
                 roi_mask = roi_mask | (labels == p)

@@ -11,7 +11,7 @@ import logging
 import sys
 import time
 from pathlib import Path
-from typing import List, Optional
+from typing import List#, Optional
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -28,7 +28,7 @@ from dipy.tracking import utils as tracking_utils
 from dipy.tracking.local_tracking import LocalTracking
 from dipy.tracking.stopping_criterion import ThresholdStoppingCriterion
 from dipy.tracking.streamline import Streamlines
-from dipy.viz import actor, colormap, has_fury, window
+#from dipy.viz import actor, colormap, has_fury, window
 from numpy import loadtxt
 
 from streamline_utils import (
@@ -36,7 +36,7 @@ from streamline_utils import (
     clean_streamlines,
     compute_velocities,
     get_roi_streamlines,
-    load_dict,
+    #load_dict,
     plot_coronal_slices,
     plot_streamlines_3d,
     save_dict,
@@ -114,7 +114,7 @@ def load_subject_data(root: Path, data_path: str, rat: str, group: str, map_grou
         All loaded arrays and gradient tables, keyed by descriptive names.
     """
     base = root / data_path.lstrip("/")
-    rat_prefix = f"/{rat}"
+    #rat_prefix = f"/{rat}"
 
     paths = {
         "HARDI": base / f"{rat}_HARDI_MD_C_native_DWIs.nii",
@@ -321,7 +321,8 @@ def run_pipeline(
     subject = load_subject_data(root_path, data_path, rat, group, map_group)
 
     # Build ROI mask
-    roi_mask = labels = subject["labels"]
+    #roi_mask = labels = subject["labels"]
+    labels = subject["labels"]
     atlas_mask = labels == atlas_cg[1][0]
     for roi_idx in range(1, 79):
         for p in atlas_cg[roi_idx]:
@@ -338,7 +339,7 @@ def run_pipeline(
     )
 
     # -- Coronal plots --------------------------------------------------------
-    coronal_dir = str(out_path)
+    #coronal_dir = str(out_path)
     plot_coronal_slices(
         build_velocity_volume(subject["mask"], subject["FM"], subject["FR"], subject["AX"]),
         0, 12.5,
@@ -352,8 +353,10 @@ def run_pipeline(
     # Save FA tracking mask figure
     sli = FA_vol.shape[2] // 2
     fig, (ax1, ax2) = plt.subplots(1, 2)
-    ax1.axis("off"); ax1.imshow(FA_vol[:, :, sli].T, cmap="gray", origin="lower")
-    ax2.axis("off"); ax2.imshow((FA_vol[:, :, sli] > 0.15).T, cmap="gray", origin="lower")
+    ax1.axis("off"); 
+    ax1.imshow(FA_vol[:, :, sli].T, cmap="gray", origin="lower")
+    ax2.axis("off"); 
+    ax2.imshow((FA_vol[:, :, sli] > 0.15).T, cmap="gray", origin="lower")
     fig.savefig(str(out_path / f"FA_tracking_mask_{rat}.png"))
     plt.close(fig)
 
