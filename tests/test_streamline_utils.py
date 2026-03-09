@@ -12,6 +12,8 @@ from unittest.mock import MagicMock
 
 import numpy as np
 
+import streamline_utils as su
+
 # Ensure source/ is on the path
 sys.path.insert(0, str(Path(__file__).parent.parent / "source"))
 
@@ -24,15 +26,14 @@ for mod in [
 ]:
     sys.modules.setdefault(mod, MagicMock())
 
-import streamline_utils as su
-
 
 class TestMatrixIO(unittest.TestCase):
     """Test save/load of text matrices."""
 
     def test_save_load_roundtrip(self):
         """save_matrix_as_text / np.loadtxt roundtrip."""
-        import tempfile, os
+        import tempfile
+        import os
         mat = np.array([[1.0, 2.0], [3.0, 4.0]])
         with tempfile.NamedTemporaryFile(suffix=".txt", delete=False) as fh:
             tmp = fh.name
@@ -48,7 +49,8 @@ class TestDictIO(unittest.TestCase):
     """Test pickle-based dictionary I/O."""
 
     def test_save_load_dict(self):
-        import tempfile, os
+        import tempfile
+        import os
         data = {"key": [1, 2, 3], "nested": {"a": 42}}
         with tempfile.NamedTemporaryFile(suffix=".dat", delete=False) as fh:
             tmp = fh.name

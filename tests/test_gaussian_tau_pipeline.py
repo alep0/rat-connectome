@@ -12,6 +12,8 @@ from unittest.mock import MagicMock
 
 import numpy as np
 
+from gaussian_tau_pipeline import compute_tau_per_roi_pair
+
 # Path setup and dipy stubs
 sys.path.insert(0, str(Path(__file__).parent.parent / "source"))
 for mod in [
@@ -20,8 +22,6 @@ for mod in [
     "dipy.viz", "dipy.viz.actor", "dipy.viz.colormap", "dipy.viz.window",
 ]:
     sys.modules.setdefault(mod, MagicMock())
-
-from gaussian_tau_pipeline import compute_tau_per_roi_pair
 
 
 class TestComputeTauPerROIPair(unittest.TestCase):
