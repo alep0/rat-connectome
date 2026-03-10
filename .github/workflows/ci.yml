@@ -73,7 +73,7 @@ jobs:
         # dipy/fury are heavy but added
         run: |
           pip install --upgrade pip
-          pip install numpy scipy matplotlib seaborn pytest pytest-cov dipy
+          pip install numpy scipy matplotlib seaborn pytest pytest-cov dipy fury
 
       - name: Run tests with coverage
         env:
