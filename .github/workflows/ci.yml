@@ -43,7 +43,7 @@ jobs:
         run: ruff check source/ tests/ validations/ --output-format=github
 
       - name: Check formatting
-        run: ruff format --check source/ tests/ validations/
+        run: ruff format --diff source/ tests/ validations/
 
   # ---------------------------------------------------------------------------
   # 2. Unit tests — synthetic data only, no MRI files required
