@@ -121,7 +121,7 @@ jobs:
         run: |
           # Create missing directories required by the validator
           mkdir -p data/raw data/processed logs results
-          
+
           conda activate ${{ env.CONDA_ENV_NAME }}
           python3 validations/validate_environment.py \
             --root ${{ github.workspace }} \
@@ -133,6 +133,7 @@ jobs:
           PYTHONPATH: ${{ github.workspace }}/source
         run: |
           conda activate ${{ env.CONDA_ENV_NAME }}
+          conda install pytest pytest-cov -y  # Ensure pytest is installed
           pytest tests/ -v --tb=short
 
   # ---------------------------------------------------------------------------
