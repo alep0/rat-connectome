@@ -10,6 +10,7 @@ git branch -M main
 git remote add origin https://github.com/alep0/rat-connectome.git
 git add .
 #git reset
+#git rm --cached old_versions
 git status
 git remote -v
 git commit -m "feat: initial project structure and refactored pipeline"

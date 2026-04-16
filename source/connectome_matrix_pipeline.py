@@ -371,6 +371,9 @@ def run_pipeline(
     roi_i = [8, 12, 70]
     roi_j = [29, 91]
 
+    #roi_i = [*range(3, 79, 1)] + [*range(78 + 3 + 1, 78 + 78 + 1, 1)]
+    #roi_j = roi_i
+
     for i in roi_i:
         for j in roi_j:
             if j <= i:

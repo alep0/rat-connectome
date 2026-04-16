@@ -22,7 +22,7 @@
 #       /results/t2/FA_RN_SI_v0-1_th-0 \
 #       /results/t2/FA_RN_SI_v0-1_th-0.0/filter_kick_out/R01 \
 #       0.0 \
-#       R01
+#       R01 
 # =============================================================================
 
 set -euo pipefail

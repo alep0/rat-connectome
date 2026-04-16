@@ -162,7 +162,7 @@ def run_gaussian_fitting(
     """
     t_start = time.time()
     root_path = Path(root)
-    in_path = root_path / data_dir.lstrip("/") / rat
+    in_path = root_path / data_dir.lstrip("/")
     out_path = root_path / output_dir.lstrip("/")
     out_path.mkdir(parents=True, exist_ok=True)
 
@@ -171,6 +171,9 @@ def run_gaussian_fitting(
 
     roi_i = [8, 12, 70]
     roi_j = [29, 91]
+
+    #roi_i = [*range(3, 79, 1)] + [*range(78 + 3 + 1, 78 + 78 + 1, 1)]
+    #roi_j = roi_i
 
     N_BINS = 20
     N_NODES = 79

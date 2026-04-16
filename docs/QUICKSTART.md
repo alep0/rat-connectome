@@ -14,7 +14,7 @@ This guide gets you from a fresh clone to a complete pipeline run in the shortes
 ## 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-org/rat-connectome.git
+git clone https://github.com/alep0/rat-connectome.git
 cd rat-connectome
 ```
 
@@ -78,6 +78,8 @@ nano config/subjects.json            # subject list
 
 **Conda:**
 ```bash
+conda activate rat-conn_env
+
 bash scripts/run_connectome_matrix.sh \
     $(pwd) \
     /data/raw/t1/R01 \
@@ -98,7 +100,7 @@ docker compose run --rm connectome \
 
 **All subjects:**
 ```bash
-bash scripts/batch_connectome_matrix.sh $(pwd) "R02 R03" # edit RATS variable inside first
+bash scripts/batch_connectome_matrix.sh $(pwd) "R02 R03" 1 2 0 # edit RATS variable inside first
 ```
 
 ---
@@ -115,7 +117,7 @@ bash scripts/run_gaussian_fitting.sh \
 
 All subjects:
 ```bash
-bash scripts/batch_gaussian_fitting.sh $(pwd) "R02 R03"
+bash scripts/batch_gaussian_fitting.sh $(pwd) "R02 R03" 1 2 0 
 ```
 
 ---

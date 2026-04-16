@@ -13,6 +13,7 @@ results/
 
 # ----- Log files -----
 logs/
+old_versions/
 
 # ----- Python -----
 __pycache__/
