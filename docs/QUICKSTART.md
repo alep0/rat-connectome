@@ -27,6 +27,8 @@ cd rat-connectome
 ```bash
 conda env create -f config/environment.yml
 conda activate rat-conn_env
+
+conda env update -f config/environment.yml --prune
 ```
 
 ### Option B — Docker
@@ -60,6 +62,17 @@ All required checks PASSED.
 ## 4. Prepare Data
 
 Place your subject data under `data/raw/` as described in [installation.md](installation.md).
+
+server:
+mkdir -p data/
+
+Local:
+scp -r /mnt/c/Users/aleph/Desktop/Job/Code/GitHub/rat-connectome/data/raw aaaguado@ifisc.uib-csic.es:/data/workspaces/aaaguado/rat-connectome/data
+
+### Descargar solo matrices txt y diccionario dat
+ssh aaaguado@ifisc.uib-csic.es "cd /data/workspaces/aaaguado/Connectome/Figures/t1/RN_SI_v0-1_th-0.0 && tar --exclude='*.png' -cvf - ." | tar -xf - -C /mnt/c/Users/aleph/Desktop
+
+ssh aaaguado@ifisc.uib-csic.es "cd /data/workspaces/aaaguado/Connectome/Figures/t1/FA_RN_SI_v0-1_th-0.0 && tar --exclude='*.png' --exclude='*.dat' -cvf - ." | tar -xf - -C /mnt/c/Users/aleph/Desktop
 
 ---
 
@@ -100,6 +113,8 @@ docker compose run --rm connectome \
 
 **All subjects:**
 ```bash
+chmod +x scripts/batch_connectome_matrix.sh
+chmod +x scripts/run_connectome_matrix.sh
 bash scripts/batch_connectome_matrix.sh $(pwd) "R02 R03" 1 2 0 # edit RATS variable inside first
 ```
 
@@ -117,6 +132,8 @@ bash scripts/run_gaussian_fitting.sh \
 
 All subjects:
 ```bash
+chmod +x scripts/batch_gaussian_fitting.sh
+chmod +x scripts/run_gaussian_fitting.sh
 bash scripts/batch_gaussian_fitting.sh $(pwd) "R02 R03" 1 2 0 
 ```
 

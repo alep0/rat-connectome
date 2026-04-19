@@ -17,9 +17,18 @@ git commit -m "feat: initial project structure and refactored pipeline"
 git remote set-url origin git@github.com:alep0/rat-connectome.git
 git push -u origin main
 
+ls -al ~/.ssh
+ssh-keygen -t ed25519 -C "aaaguado@ifisc.uib-csic.es"
+
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
+
+cat ~/.ssh/id_ed25519.pub
+ssh -T git@github.com
+
 git clone git@github.com:alep0/rat-connectome.git
+git clone https://github.com/alep0/rat-connectome.git
+
 ```
 
 ---

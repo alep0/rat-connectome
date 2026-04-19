@@ -5,6 +5,9 @@ Compute W (fibre count), D (median fibre length), and V (median velocity)
 connectivity matrices from diffusion-weighted MRI data.
 
 Refactored from: Streamlines_W_D_V_T_v2_16_n3.py
+
+- Monitoring system memory in Python added.
+
 """
 
 import logging
@@ -43,11 +46,35 @@ from streamline_utils import (
     save_matrix_as_text,
 )
 
+import psutil
+
 logger = logging.getLogger(__name__)
 
 # Physical voxel-size scaling constants  [mm → m conversion]
 _VOXEL_SCALE = np.array([2.27273, 2.27273, 10.0])
 _SPEED_SCALE = 0.1 * 0.1 * (1.0 / 1000.0)
+
+
+# ---------------------------------------------------------------------------
+# Displays the memory stats in Gigabytes
+# ---------------------------------------------------------------------------
+
+def show_ram_usage():
+    # Get virtual memory statistics
+    mem = psutil.virtual_memory()
+    
+    # Convert bytes to GB for readability
+    # (1 GB = 1024^3 bytes)
+    used_gb = mem.used / (1024 ** 3)
+    available_gb = mem.available / (1024 ** 3)
+    total_gb = mem.total / (1024 ** 3)
+    percent_used = mem.percent
+
+    print("--- RAM Memory Status ---")
+    print(f"Total:     {total_gb:.2f} GB")
+    print(f"Used:      {used_gb:.2f} GB ({percent_used}%)")
+    print(f"Available: {available_gb:.2f} GB")
+    print("-------------------------")
 
 
 # ---------------------------------------------------------------------------
@@ -380,6 +407,8 @@ def run_pipeline(
                 continue
 
             logger.info("Processing ROI pair (%d, %d).", i, j)
+            
+            show_ram_usage()
 
             W[i, j], D[i, j], bundle = get_roi_streamlines(
                 i, j, N_NODES, streamlines, subject["labels"], atlas_cg, subject["affine"]

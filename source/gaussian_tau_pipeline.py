@@ -6,6 +6,9 @@ connectivity matrices by fitting Gaussian models to per-ROI-pair
 fibre distributions.
 
 Refactored from: Gaussian_fit_v1_3_n5.py
+
+- Monitoring system memory in Python added.
+
 """
 
 import logging
@@ -19,11 +22,35 @@ import numpy as np
 
 from streamline_utils import load_dict, save_matrix_as_text
 
+import psutil
+
 logger = logging.getLogger(__name__)
 
 # Physical constants
 _DISTANCE_SCALE = 0.1 * 0.1 * (1.0 / 1000.0)   # integration step → metres
 _VOXEL_ANISO = np.array([2.27273, 2.27273, 10.0])  # voxel dimensions (mm)
+
+
+# ---------------------------------------------------------------------------
+# Displays the memory stats in Gigabytes
+# ---------------------------------------------------------------------------
+
+def show_ram_usage():
+    # Get virtual memory statistics
+    mem = psutil.virtual_memory()
+    
+    # Convert bytes to GB for readability
+    # (1 GB = 1024^3 bytes)
+    used_gb = mem.used / (1024 ** 3)
+    available_gb = mem.available / (1024 ** 3)
+    total_gb = mem.total / (1024 ** 3)
+    percent_used = mem.percent
+
+    print("--- RAM Memory Status ---")
+    print(f"Total:     {total_gb:.2f} GB")
+    print(f"Used:      {used_gb:.2f} GB ({percent_used}%)")
+    print(f"Available: {available_gb:.2f} GB")
+    print("-------------------------")
 
 
 # ---------------------------------------------------------------------------
@@ -193,6 +220,8 @@ def run_gaussian_fitting(
                 continue
 
             logger.info("Processing ROI pair (%d, %d).", i, j)
+            
+            show_ram_usage()
 
             vel_dic = load_dict(str(in_path / f"Velocities_{rat}_ij_{i}-{j}.dat"))
             stm_dic = load_dict(str(in_path / f"Streamlines_{rat}_ij_{i}-{j}.dat"))

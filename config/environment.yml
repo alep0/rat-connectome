@@ -21,6 +21,9 @@ dependencies:
   # Machine learning (Gaussian fitting)
   - scikit-learn>=1.2
 
+  # Library industry standard to report RAM usage
+  - psutil
+
   # Utilities
   - pip
 

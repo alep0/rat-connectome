@@ -93,7 +93,7 @@ for r in $(seq 1 $REP); do
                 2>&1 | tee -a "${BATCH_LOG}"
             else
             # SLURM execution
-            run -t 23:30 -c 1 -m 8 \
+            run -t 23:30 -c 1 -m 16 \
                 -j "gauss_${RAT}_th${TH}" \
                 ./run_gaussian_fitting.sh \
                     "${ROOT_PATH}" "${DATA_DIR}" "${OUTPUT_DIR}" "${TH}" "${RAT}"

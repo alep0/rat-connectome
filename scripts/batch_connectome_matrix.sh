@@ -90,7 +90,7 @@ for r in $(seq 1 $REP); do
             2>&1 | tee -a "${BATCH_LOG}"
         else
             # SLURM execution:
-            run -t 123:30 -c 1 -m 16 \
+            run -t 123:30 -c 1 -m 32 \
                 -j "matrices_${RAT}" \
                 ./run_connectome_matrix.sh \
                     "${ROOT_PATH}" "${DATA_PATH}" "${FIGURES_PATH}" \
